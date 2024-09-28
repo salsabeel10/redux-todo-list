@@ -39,7 +39,7 @@ const List = () => {
                     type="text"
                     value={newText}
                     onChange={(e) => setNewText(e.target.value)}
-                    className="ml-3 text-lg font-medium rounded px-1 outline-none"
+                    className="ml-3 text-lg font-medium rounded outline-none w-48"
                   />
                 ) : (
                   // Otherwise, show the todo text
@@ -52,7 +52,7 @@ const List = () => {
                 {editId === todo.id ? (
                   <button
                     onClick={() => handleSaveClick(todo.id)}
-                    className="text-blue-600 text-lg cursor-pointer hover:text-blue-700"
+                    className="mr-1 text-blue-600 text-lg cursor-pointer hover:text-blue-700"
                   >
                     Save
                   </button>
