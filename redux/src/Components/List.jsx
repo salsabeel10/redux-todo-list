@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
-import { MdDeleteForever, MdEdit } from 'react-icons/md'
+import { MdDeleteForever, MdEdit, MdCheckBox } from 'react-icons/md'
 import { useDispatch } from 'react-redux'
 import { removeTodo, editTodo, toggleCompleted } from '../features/todo/todoSlice'
 
@@ -45,7 +45,7 @@ const List = () => {
                     type="text"
                     value={newText}
                     onChange={(e) => setNewText(e.target.value)}
-                    className="ml-3 text-lg font-medium rounded outline-none w-48"
+                    className="ml-3 text-lg underline font-medium rounded outline-none w-48"
                   />
                 ) : (
                   // Otherwise, show the todo text
@@ -64,9 +64,9 @@ const List = () => {
                 {editId === todo.id ? (
                   <button
                     onClick={() => handleSaveClick(todo.id)}
-                    className="mr-1 text-blue-600 text-lg cursor-pointer hover:text-blue-700"
+                    className="mr-1 text-blue-600 text-2xl cursor-pointer hover:text-blue-700"
                   >
-                    Save
+                    <MdCheckBox />
                   </button>
                 ) : (
                   <span
