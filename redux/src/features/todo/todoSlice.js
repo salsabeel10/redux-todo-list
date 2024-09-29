@@ -1,15 +1,16 @@
 import {createSlice,nanoid} from '@reduxjs/toolkit'
 
-
 const initialState = {
   todos: [
     {
       id: 1,
       text: 'hello',
+      completed: false,
     },
     {
       id: 2,
       text: 'how are you',
+      completed: false,
     },
   ],
 }
@@ -22,6 +23,7 @@ export const todoSlice = createSlice({
       const todo = {
         id: nanoid(),
         text: action.payload,
+        completed: false,
       }
       state.todos.push(todo)
     },
@@ -35,9 +37,15 @@ export const todoSlice = createSlice({
         todo.text = newText // Update the text of the found todo
       }
     },
+    toggleCompleted: (state, action) => {
+      const todo = state.todos.find((todo) => todo.id === action.payload)
+      if (todo) {
+        todo.completed = !todo.completed // Toggle completed state
+      }
+    },
   },
 })
  
-export const {addTodo,removeTodo,editTodo}=todoSlice.actions
+export const {addTodo,removeTodo,editTodo,toggleCompleted}=todoSlice.actions
 
 export default todoSlice.reducer

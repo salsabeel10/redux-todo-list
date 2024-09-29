@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { MdDeleteForever, MdEdit } from 'react-icons/md'
 import { useDispatch } from 'react-redux'
-import { removeTodo, editTodo } from '../features/todo/todoSlice'
+import { removeTodo, editTodo, toggleCompleted } from '../features/todo/todoSlice'
 
 const List = () => {
   const dispatch = useDispatch()
@@ -20,6 +20,10 @@ const List = () => {
     setEditId(null) // Exit edit mode
   }
 
+  const handleCheckboxChange = (id) => {
+    dispatch(toggleCompleted(id)) // Dispatch toggleCompleted when checkbox changes
+  }
+
   return (
     <div>
       <ul className="divide-y divide-gray-200 px-4">
@@ -32,6 +36,8 @@ const List = () => {
                   name="todo1"
                   type="checkbox"
                   className="h-4 w-4 text-teal-600 focus:ring-teal-500 border-gray-300 rounded cursor-pointer"
+                  checked={todo.completed}
+                  onChange={() => handleCheckboxChange(todo.id)}
                 />
                 {editId === todo.id ? (
                   // If this todo is being edited, show the input field
@@ -44,7 +50,13 @@ const List = () => {
                 ) : (
                   // Otherwise, show the todo text
                   <label className="ml-3 block text-gray-900">
-                    <span className="text-lg font-medium">{todo.text}</span>
+                    <span
+                      className={`text-lg font-medium ${
+                        todo.completed ? 'text-slate-500 line-through' : ''
+                      }`}
+                    >
+                      {todo.text}
+                    </span>
                   </label>
                 )}
               </div>
