@@ -46,6 +46,7 @@ const List = () => {
                     value={newText}
                     onChange={(e) => setNewText(e.target.value)}
                     className="ml-3 text-lg underline font-medium rounded outline-none w-48"
+                    autoFocus
                   />
                 ) : (
                   // Otherwise, show the todo text
